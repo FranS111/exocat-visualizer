@@ -1,10 +1,22 @@
-# EXOCAT Interactive Visualizer — MVP
+# EXOCAT Interactive Visualizer
+
+**An interactive atlas of the invasive alien fauna of Catalonia** — part analytical dashboard, part visual field guide.
 
 © 2026 FranS111 — All rights reserved. See [LICENSE](LICENSE).
 
-Interactive dashboard for exploring invasive alien **animal** records across Catalonia's watersheds,
-available in Catalan, Spanish and English.
-React 18 + TypeScript, plain CSS custom properties, Leaflet / react-leaflet, Recharts, lucide-react.
+EXOCAT Visualizer turns records of 31 invasive animal species across Catalonia's 14 river basins into two complementary experiences:
+
+- **Data view** — a cross-filtering dashboard for technicians and researchers: an interactive Leaflet map (records, 10 km density grid, basin hubs), taxonomic composition, records by watershed and risk, a timeline with a brushable period, and a sortable species catalogue with detailed profiles. Every filter updates the map, charts and table together.
+- **Explore view** — an editorial, photo-led field guide for the general public: the five animal groups, a spotlight for each species with its story, native range and route to Catalonia, an interactive atlas of origins, a timeline of first arrivals and practical advice on how to help.
+
+**Highlights**
+
+- Catalan, Spanish and English, following the browser language by default
+- Day and night themes that follow the system preference, with smooth transitions
+- Predictive species search (common or scientific name, accent-insensitive)
+- Freely licensed species photos from Wikimedia Commons, each credited with author and licence
+- Accessible by design: keyboard navigation, ARIA patterns, table views for charts, reduced-motion support
+- Built with React 18, TypeScript, plain CSS custom properties, Leaflet, Recharts, d3-geo and lucide-react — no UI framework
 
 > **Data notice:** the 31 taxa are real invasive alien animals present in Catalonia, but the occurrence
 > records, scores and some dates are **synthetic** (seeded and deterministic) for demo purposes.
