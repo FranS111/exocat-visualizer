@@ -1,0 +1,21 @@
+# Dependencies & build output
+node_modules/
+dist/
+.vite/
+*.log
+*.tsbuildinfo
+
+# Environment / local config
+.env
+.env.*
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Commercial font files (Resist Mono) are licensed per user and must not be redistributed.
+# Only public/fonts/README.md is tracked.
+public/fonts/*.woff
+public/fonts/*.woff2
+public/fonts/*.otf
+public/fonts/*.ttf

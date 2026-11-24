@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Resist Mono (Groteskly Yours) — commercial font, not bundled.
+   Drop licensed web files into /public/fonts with these exact names and the
+   whole UI switches over; no code change needed. Until then the stack in
+   tokens.css falls back to JetBrains Mono (Google Fonts, same metric class).
+   local() lets an installed desktop copy work during development too.
+   ========================================================================== */
+@font-face {
+  font-family: 'Resist Mono';
+  src: local('Resist Mono Thin'), local('ResistMono-Thin'), url('/fonts/ResistMono-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Resist Mono';
+  src: local('Resist Mono Light'), local('ResistMono-Light'), url('/fonts/ResistMono-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Resist Mono';
+  src: local('Resist Mono Regular'), local('ResistMono-Regular'), url('/fonts/ResistMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Resist Mono';
+  src: local('Resist Mono Medium'), local('ResistMono-Medium'), url('/fonts/ResistMono-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

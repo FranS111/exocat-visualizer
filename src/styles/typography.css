@@ -1,0 +1,429 @@
+/* ==========================================================================
+   Editorial type layer — old meets new
+   · Instrument Serif (display): titles, scientific names, italic accents
+   · Space Grotesk (sans/numeric): every number and the UI body
+   · DM Mono (mono): index labels "(01)", eyebrows, table heads, buttons
+   Loaded after components.css; restyles typography and flattens surfaces.
+   ========================================================================== */
+:root {
+  --hero-accent: var(--bio-olive);              /* 5.5:1 on surface */
+  --hero-ghost: rgba(40, 54, 24, 0.05);
+  --mono-size: 0.6875rem;                       /* 11px */
+  --mono-tracking: 0.06em;
+}
+
+:root[data-theme='dark'] {
+  --hero-accent: #b8c96a;                       /* lifted olive, 9.6:1 on surface */
+  --hero-ghost: rgba(254, 250, 224, 0.035);
+}
+
+/* Shared mono label treatment */
+.mono-label,
+.eyebrow,
+.filter-group legend,
+.data-table thead th,
+.chart-legend,
+.map-legend__title,
+.stat-grid dt,
+.species-modal__grid h3,
+.filter-panel__footer,
+.year-range__scale,
+.data-pill,
+.lang-switch__item,
+.toggle,
+.button,
+.card__subtitle,
+.app-footer__meta {
+  font-family: var(--font-mono);
+  font-size: var(--mono-size);
+  font-weight: 400;
+  letter-spacing: var(--mono-tracking);
+  text-transform: uppercase;
+}
+
+.button,
+.toggle,
+.lang-switch__item {
+  font-weight: 500;
+}
+
+/* ---------- Header brand ---------- */
+.brand-title {
+  line-height: 1;
+}
+
+.brand-title span {
+  font-style: italic;
+  color: var(--bio-text-secondary);
+}
+
+.brand-subtitle {
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--mono-tracking);
+  text-transform: uppercase;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  align-items: end;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--radius-lg);
+  background: var(--bio-surface);
+  animation: rise-in var(--dur-slow) var(--ease-out) both;
+}
+
+.hero__ghost {
+  position: absolute;
+  z-index: -1;
+  right: -0.04em;
+  bottom: -0.24em;
+  font-family: var(--font-sans);
+  font-size: clamp(7rem, 17vw, 15rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--hero-ghost);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--mono-size);
+  letter-spacing: var(--mono-tracking);
+  text-transform: uppercase;
+  color: var(--bio-text-muted);
+}
+
+.hero__eyebrow-index {
+  color: var(--hero-accent);
+}
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-3);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--text-strong);
+}
+
+.hero__line--serif {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.6vw, 4.25rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.hero__line--heavy {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 4.3vw, 3.9rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--hero-accent);
+}
+
+.hero__line--indent {
+  padding-left: 1.4em;
+}
+
+.hero__aside {
+  display: grid;
+  gap: var(--space-4);
+  padding-left: var(--space-5);
+  border-left: 1px solid var(--bio-border);
+}
+
+.hero__lede {
+  max-width: 40ch;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--bio-text-secondary);
+}
+
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--mono-size);
+  letter-spacing: var(--mono-tracking);
+  text-transform: uppercase;
+  color: var(--bio-text-secondary);
+}
+
+.hero__facts li::before {
+  content: '[ ';
+  color: var(--bio-text-muted);
+}
+
+.hero__facts li::after {
+  content: ' ]';
+  color: var(--bio-text-muted);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5);
+  }
+  .hero__aside {
+    padding: var(--space-4) 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--bio-border);
+  }
+}
+
+/* ---------- KPI ledger (hairlines drawn by the 1px grid gap) ---------- */
+.kpi-strip {
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--radius-lg);
+  background: var(--bio-border);
+}
+
+.kpi {
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--bio-surface);
+}
+
+.kpi:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--bio-surface-subtle);
+}
+
+.kpi__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--mono-size);
+  letter-spacing: var(--mono-tracking);
+  text-transform: uppercase;
+}
+
+.kpi__index {
+  color: var(--bio-text-muted);
+}
+
+.kpi__label {
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: inherit;
+  color: var(--bio-text-secondary);
+}
+
+.kpi__value {
+  margin-top: var(--space-2);
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi--alert .kpi__value {
+  color: var(--bio-terracotta-strong);
+}
+
+.kpi__context {
+  font-family: var(--font-mono);
+  font-size: var(--mono-size);
+  letter-spacing: 0.02em;
+  color: var(--bio-text-muted);
+}
+
+.kpi__context.is-species {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--bio-text-secondary);
+}
+
+@media (max-width: 1200px) {
+  /* 5 tiles in 3 or 2 columns: the last one spans so no empty hairline cell shows. */
+  .kpi:last-child {
+    grid-column: span 2;
+  }
+}
+
+/* ---------- Cards: flat, hairline, serif titles with mono indices ---------- */
+.card {
+  box-shadow: none;
+}
+
+.card__title {
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.card__index {
+  font-family: var(--font-mono);
+  font-size: var(--mono-size);
+  letter-spacing: var(--mono-tracking);
+  color: var(--bio-text-muted);
+}
+
+.card__subtitle {
+  margin-top: 6px;
+  color: var(--bio-text-muted);
+}
+
+/* ---------- Tables ---------- */
+.species-table tbody td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.species-table .sci-name {
+  font-size: 1.25rem;
+}
+
+.species-table .tabular,
+.data-table .num {
+  font-family: var(--font-numeric);
+  font-weight: 500;
+}
+
+.data-table thead th .sort-button {
+  font-weight: 500;
+}
+
+/* ---------- Filters ---------- */
+.filter-panel__header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.chip__count {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Species modal ---------- */
+.species-modal__titles .eyebrow {
+  margin-bottom: 4px;
+}
+
+.stat-grid dd {
+  font-variant-numeric: tabular-nums;
+}
+
+.risk-meter__label strong {
+  font-family: var(--font-numeric);
+  font-size: var(--text-lg);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Map & chart text ---------- */
+.map-tooltip .tt-sci {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+
+.recharts-cartesian-axis-tick-value,
+.recharts-brush-texts text {
+  font-family: var(--font-mono);
+}
+
+.chart-tooltip__title {
+  font-family: var(--font-numeric);
+}
+
+@media (max-width: 640px) {
+  .card__title {
+    font-size: 1.5rem;
+  }
+  .kpi {
+    padding: var(--space-3) var(--space-4) var(--space-4);
+  }
+}
+
+/* ==========================================================================
+   Resist Mono tuning
+   Monospace already spaces generously, so tracking goes to ~0; the Thin cut is
+   used only where glyphs are large enough to hold a hairline stroke.
+   ========================================================================== */
+:root {
+  --mono-tracking: 0.02em;
+  --hero-ghost: rgba(40, 54, 24, 0.09);
+}
+
+:root[data-theme='dark'] {
+  --hero-ghost: rgba(254, 250, 224, 0.06);
+}
+
+/* Thin — large numerals & display lines */
+.kpi__value {
+  font-size: clamp(2.25rem, 3.2vw, 3rem);
+  font-weight: var(--weight-thin);
+  letter-spacing: -0.02em;
+}
+
+.donut-center__value {
+  font-size: 2.5rem;
+  font-weight: var(--weight-thin);
+  letter-spacing: -0.02em;
+}
+
+.hero__line--heavy {
+  font-size: clamp(2.1rem, 4.6vw, 4.25rem);
+  font-weight: var(--weight-thin);
+  letter-spacing: -0.03em;
+}
+
+.hero__ghost {
+  font-weight: var(--weight-thin);
+  letter-spacing: -0.04em;
+}
+
+/* Light — mid-size numbers and the long-form lede */
+.stat-grid dd,
+.year-range__values,
+.risk-meter__label strong {
+  font-weight: var(--weight-light);
+  letter-spacing: 0;
+}
+
+.hero__lede {
+  font-weight: var(--weight-light);
+  line-height: 1.65;
+}
+
+/* Regular — dense data stays at book weight for legibility */
+.species-table .tabular,
+.data-table .num {
+  font-weight: 400;
+}
+
+.chip,
+.segmented__item,
+.check__label,
+.token {
+  letter-spacing: 0;
+}

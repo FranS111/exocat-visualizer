@@ -1,0 +1,165 @@
+/* ==========================================================================
+   EXOCAT design tokens — organic palette inspired by Catalan flora & earth
+   Brand hues (olive, forest, cream, sand, terracotta) never change between
+   themes; surface, text and semantic tokens are redefined for night mode.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  /* Brand palette */
+  --bio-olive: #606c38;        /* Primary accent / active states */
+  --bio-forest: #283618;       /* Primary headers, main buttons & text */
+  --bio-cream: #fefae0;        /* Base canvas tint */
+  --bio-sand: #dda15e;         /* Warnings / medium risk / highlights */
+  --bio-terracotta: #bc6c25;   /* High risk / invasive alerts / badges */
+  --bio-surface: #ffffff;      /* Elevated card backgrounds */
+  --bio-surface-subtle: #f9f8f3; /* Neutral container background */
+  --bio-border: #e2dfcf;       /* Organic subtle dividers */
+  --bio-text-primary: #283618;
+  --bio-text-secondary: #556042;
+  --bio-white: #ffffff;
+  --bio-black: #11140c;
+
+  /* Derived tones (AA-safe text variants of the accent colours) */
+  --bio-olive-strong: #4d5a26;
+  --bio-olive-tint: #eef0de;
+  --bio-olive-wash: rgba(96, 108, 56, 0.08);
+  --bio-terracotta-strong: #9a4f12;  /* 5.3:1 on white — use for text */
+  --bio-terracotta-tint: #f8e9dc;
+  --bio-sand-strong: #7a5418;        /* text on sand tint */
+  --bio-sand-tint: #fbefdc;
+  --bio-text-muted: #6d755a;         /* 4.6:1 on white */
+  --bio-border-strong: #cfcab2;
+  --bio-canvas: #fbfaf1;
+
+  /* Semantic roles (what components use; each theme maps them onto the palette) */
+  --text-strong: var(--bio-forest);          /* headings, key figures */
+  --accent: var(--bio-olive);                /* fills, focus, active marks */
+  --accent-ring: rgba(96, 108, 56, 0.38);
+  --accent-glow: rgba(96, 108, 56, 0.18);
+  --selection: rgba(96, 108, 56, 0.22);
+  --solid-bg: var(--bio-forest);             /* primary button, active pill */
+  --solid-bg-hover: #4d5a26;
+  --solid-fg: var(--bio-cream);
+  --count-bg: var(--bio-terracotta-strong);
+  --count-fg: var(--bio-white);
+  --glass: rgba(254, 250, 224, 0.82);        /* sticky header */
+  --glass-strong: rgba(255, 255, 255, 0.92); /* map legend, overlays */
+  --map-bg: #eef0e4;
+  --glow-warm: rgba(221, 161, 94, 0.1);
+  --glow-cool: rgba(96, 108, 56, 0.08);
+  --scrim: rgba(17, 20, 12, 0.45);
+  --basemap-filter: grayscale(0.75) sepia(0.18) brightness(1.06) contrast(0.92);
+
+  /* Data encodings (mirror utils/theme.ts) */
+  --risk-high: #a3401b;
+  --risk-medium: #d9a04a;
+  --risk-low: #5f7d1c;
+
+  /* Typography */
+  /* Editorial pairing — old meets new: a condensed high-contrast serif for titles and
+     scientific names; Resist Mono for everything else (UI, labels, numbers).
+     JetBrains Mono stands in until the licensed Resist Mono files are added (see fonts.css). */
+  --font-mono: 'Resist Mono', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --font-sans: var(--font-mono);
+  --font-numeric: var(--font-mono);
+  --font-display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  /* Thin is reserved for large sizes (≥ ~28px); hairline strokes vanish at body size. */
+  --weight-thin: 100;
+  --weight-light: 300;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  /* Monospace sets wide: body runs a step smaller than with a proportional sans. */
+  --text-base: 0.875rem;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+
+  /* Spacing (4px grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  /* Shape & elevation */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(40, 54, 24, 0.06);
+  --shadow-md: 0 1px 2px rgba(40, 54, 24, 0.05), 0 6px 18px -6px rgba(40, 54, 24, 0.12);
+  --shadow-lg: 0 24px 60px -18px rgba(17, 20, 12, 0.35);
+  --focus-ring: 0 0 0 2px var(--bio-surface), 0 0 0 4px var(--accent);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur-med: 220ms;
+  --dur-slow: 360ms;
+
+  /* Layout */
+  --header-h: 64px;
+  --sidebar-w: 296px;
+}
+
+/* --------------------------------------------------------------------------
+   Night mode — deep forest surfaces, cream text, lifted olive/sand accents.
+   All text pairs ≥ 4.5:1 (primary 15.7:1, secondary 10.5:1, muted 6.8:1 on cards).
+   -------------------------------------------------------------------------- */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bio-surface: #1a2112;
+  --bio-surface-subtle: #222a18;
+  --bio-border: #333d26;
+  --bio-border-strong: #4a5638;
+  --bio-canvas: #12170c;
+  --bio-text-primary: #fefae0;
+  --bio-text-secondary: #d2cfb2;
+  --bio-text-muted: #a5a88a;
+
+  --bio-olive-strong: #b4c27a;
+  --bio-olive-tint: #2c3618;
+  --bio-olive-wash: rgba(154, 171, 85, 0.1);
+  --bio-terracotta-strong: #ec9a5c;
+  --bio-terracotta-tint: #3d2718;
+  --bio-sand-strong: #e8b878;
+  --bio-sand-tint: #3a3018;
+
+  --text-strong: var(--bio-cream);
+  --accent: #9aab55;
+  --accent-ring: rgba(154, 171, 85, 0.45);
+  --accent-glow: rgba(154, 171, 85, 0.22);
+  --selection: rgba(221, 161, 94, 0.3);
+  --solid-bg: var(--bio-sand);
+  --solid-bg-hover: #e6b47a;
+  --solid-fg: var(--bio-black);
+  --count-bg: var(--bio-terracotta);
+  --count-fg: var(--bio-black);
+  --glass: rgba(18, 23, 12, 0.82);
+  --glass-strong: rgba(26, 33, 18, 0.92);
+  --map-bg: #1c2215;
+  --glow-warm: rgba(221, 161, 94, 0.07);
+  --glow-cool: rgba(96, 108, 56, 0.14);
+  --scrim: rgba(0, 0, 0, 0.6);
+  --basemap-filter: invert(1) hue-rotate(180deg) grayscale(0.7) sepia(0.25) brightness(0.95) contrast(0.88);
+
+  --risk-high: #cc4838;
+  --risk-medium: #bd8a2a;
+  --risk-low: #4c7c2a;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 22px -8px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 24px 60px -18px rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-med: 0ms;
+    --dur-slow: 0ms;
+  }
+}
