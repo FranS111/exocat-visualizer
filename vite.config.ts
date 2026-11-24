@@ -23,7 +23,10 @@ function tolerateWatcherLocks(): Plugin {
   };
 }
 
-export default defineConfig({
+export default defineConfig(({ command, isPreview }) => ({
+  // GitHub Pages serves the app from /exocat-visualizer/ (build and `vite preview`);
+  // the dev server stays at the root.
+  base: command === 'build' || isPreview ? '/exocat-visualizer/' : '/',
   plugins: [react(), tolerateWatcherLocks()],
   server: {
     port: 5173,
@@ -43,4 +46,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));
